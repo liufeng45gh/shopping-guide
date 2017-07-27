@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lucier.model">
+    <resultMap type="com.lucifer.model.Item" id="ItemMap">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="summary" property="summary"/>
+        <result column="logo" property="logo"/>
+        <result column="author" property="author"/>
+        <result column="source" property="source"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="content" property="content"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="vote_count" property="voteCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="publish_at" property="publishAt"/>
+        <result column="top" property="top"/>
+        <result column="l_width" property="lWidth"/>
+        <result column="l_height" property="lHeight"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+
+    </resultMap>
+
+    <select id="itemList" resultMap="ItemMap">
+        select item.*,category.name category_name from item
+        left outer join category on item.category_id = category.id
+        where  item.is_deleted = 0
+        <if test="title!=null and title!=''">
+            and item.title like '%${title}%'
+        </if>
+        <if test="categoryId!=null and categoryId!=''">
+            and item.category_id = #{categoryId}
+        </if>
+        order by item.top desc,item.publish_at desc limit #{offset},#{count}
+    </select>
+
+    <select id="cmsItemMatchRecordCount" resultType="java.lang.Integer">
+        select count(*) from item where is_deleted = 0
+        <if test="title!=null and title!=''">
+            and item.title like '%${title}%'
+        </if>
+        <if test="categoryId!=null and categoryId!=''">
+            and item.category_id = #{categoryId}
+        </if>
+    </select>
+
+
+    <select id="itemTopList" resultMap="ItemMap">
+        select item.*,category.name category_name from item
+        left outer join category on item.category_id = category.id
+        where  item.is_deleted = 0 and item.top != 0
+        <if test="title!=null and title!=''">
+            and item.title like '%${title}%'
+        </if>
+        order by item.top desc,item.publish_at desc limit #{offset},#{count}
+    </select>
+
+    <select id="cmsItemTopMatchRecordCount" resultType="java.lang.Integer">
+        select count(*) from item where is_deleted = 0 and item.top != 0
+        <if test="title!=null and title!=''">
+            and item.title like '%${title}%'
+        </if>
+    </select>
+
+    <insert id="insertItem" useGeneratedKeys="true" keyProperty="id">
+        insert into item
+        (title,logo,summary,author,source,category_id,content,publish_at,top,click_count,l_width,l_height,created_at,updated_at)
+        values
+        (#{title},#{logo},#{summary},#{author},#{source},#{categoryId},#{content},#{publishAt},#{top},#{clickCount},#{lWidth},#{lHeight},#{createdAt},#{updatedAt})
+    </insert>
+
+    <update id="updateItem">
+        update item
+        set
+        title = #{title},  logo= #{logo}, summary=#{summary}, author=#{author},source = #{source},l_width = #{lWidth}, l_height = #{lHeight},
+        category_id = #{categoryId} ,content = #{content},publish_at = #{publishAt} ,top = #{top},updated_at = #{updatedAt}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteItem">
+        update item
+        set is_deleted = 1
+        where id = #{id}
+    </delete>
+
+    
+
+    <select id="getItem" resultMap="ItemMap">
+        select item.*,category.name category_name from item
+        left outer join category on item.category_id = category.id
+        where  item.id = #{id}
+    </select>
+  
+    <select id="itemListOrderByUpdatedAt"   resultMap="ItemMap">
+        select *
+        from item
+        <if test="updatedAt != null">
+            <![CDATA[
+			where updated_at > #{updatedAt}
+			]]>
+        </if>
+        order by updated_at limit #{count}
+    </select>
+
+
+    <resultMap type="com.lucifer.model.Category" id="CategoryMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="icon" property="icon"/>
+        <result column="image" property="image"/>
+        <result column="top" property="top"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <select id="categoryList" resultMap="CategoryMap">
+        select * from category where  is_deleted = 0 order by top desc
+    </select>
+
+    <insert id="addCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into category (name,top,is_deleted) values (#{name},#{top},0)
+    </insert>
+
+    <delete id="deleteCategory">
+        update category set is_deleted = 1 where id = #{id}
+    </delete>
+
+    <select id="getCategory" resultMap="CategoryMap">
+        select * from category where  id = #{id}
+    </select>
+    <update id="updateCategory">
+        update category set name = #{name},top = #{top} where id = #{id}
+    </update>
+    
+
+
+    
+
+
+
+</mapper>

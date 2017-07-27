@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lucier.model.User">
+	<resultMap type="com.lucifer.model.User" id="userMap">
+		<id column="id" property="id"/>
+		<result column="uuid" property="uuid"/>
+		<result column="weixin_id" property="weixinId"/>
+		<result column="weibo_id" property="weiboId"/>
+		<result column="qq_id" property="qqId"/>
+		<result column="phone" property="phone"/>
+		<result column="mail" property="mail"/>
+		<result column="password" property="password"/>
+		<result column="salt" property="salt"/>
+		<result column="role_id" property="roleId"/>
+		<result column="nick_name" property="nickName"/>
+		<result column="avatar" property="avatar"/>
+		<result column="true_name" property="trueName"/>
+		<result column="sex" property="sex"/>
+		<result column="province" property="province"/>
+		<result column="city" property="city"/>
+		<result column="cardId" property="cardId"/>
+		<result column="birth" property="birth"/>
+
+		<result column="status" property="status"/>
+		<result column="created_at" property="createdAt"/>
+		<result column="updated_at" property="updatedAt"/>
+	</resultMap>
+
+	<resultMap type="com.lucifer.model.AccessToken" id="accessTokenMap">
+		<id column="user_id" property="userId"/>
+		<result column="access_token" property="token"/>
+		<result column="code" property="code"/>
+		<result column="code_login" property="codeLogin"/>
+	</resultMap>
+
+	
+	
+	<!-- 手机是否注册 -->	
+	<select id="userCountByPhone" resultType="java.lang.Integer">
+	select count(*) from user where phone=#{phone}
+	</select>
+	
+
+	
+	<!-- getUserByid -->
+	<select id="getUserById"  resultMap="userMap">
+	select * from user where id=#{id}
+	</select>
+	<!-- getUserByAccout -->
+	<select id="getUserByAccount"  resultMap="userMap">
+	select * from user where account=#{account}
+	</select>
+	<!-- getUserByPhone -->
+	<select id="getUserByPhone"  resultMap="userMap">
+	select * from user where phone=#{phone}
+	</select>
+	
+
+	
+	<!-- getUserByWeiboId -->
+	<select id="getUserByWeiboId" resultMap="userMap">
+	select * from user where weibo_id=#{weiboId}
+	</select>
+	
+	<!-- getUserByWeixinId -->
+	<select id="getUserByWeixinId" resultMap="userMap">
+	select * from user where weixin_id=#{weixinId}
+	</select>
+	<update id="updatePassword">
+		update user set password = #{password} where id = #{id}
+	</update>
+	<update id="updateUserNick">
+		update user set nick_name = #{nickName} where id = #{id}
+	</update>
+
+	<select id="getUserIdByToken" resultType="java.lang.Long">
+		select user_id from access_token where access_token = #{token}
+	</select>
+	<update id="resetUserLoginToken">
+		update access_token set access_token = #{token}, code = #{code} where user_id = #{userId}
+	</update>
+	<insert id="insertUserLoginToken">
+		insert into access_token (user_id,access_token,code,code_login) values (#{userId},#{token},#{code},#{codeLogin})
+	</insert>
+	<update id="setCodeInvalid">
+		update access_token set code_login = 1 where code = #{code}
+	</update>
+	<delete id="removeToken">
+		delete from access_token where access_token = #{token}
+	</delete>
+	
+	<select id="getAccessTokenByCode" resultMap="accessTokenMap">
+		select * from access_token where code = #{code}
+	</select>
+
+	<select id="getAccessTokenByToken" resultMap="accessTokenMap">
+		select * from access_token where access_token = #{token}
+	</select>
+
+	<select id="getUserInfoListCount" resultType="java.lang.Integer">
+		select count(*) from user where 1= 1
+		<if test="account != null">
+			and account=#{account}
+		</if>
+	</select>
+
+	<select id="getUserInfoList" resultMap="userMap">
+		select user.* from user where 1= 1
+		<if test="account != null">
+			and user.account=#{account}
+		</if>
+		order by user.id desc
+		<if test="offset != null and perPageCount != null">
+			limit #{offset},#{perPageCount}
+		</if>
+	</select>
+
+
+	<insert id="insertUser">
+		insert into user
+		(id,uuid,account,password,salt,role_id,nick_name,created_at,updated_at,status)
+		values
+		(#{id},#{uuid},#{account},#{password},#{salt},#{roleId},#{nickName},#{createdAt},#{updatedAt},#{status})
+	</insert>
+	
+	<update id="setUserBlock">
+		update user set status = #{status} where id = #{id}
+	</update>
+	<select id="userCmsSearch"  resultMap="userMap">
+		${_parameter}
+	</select>
+	<select id="userCmsSearchCount" resultType="java.lang.Integer">
+		${_parameter}
+	</select>
+
+
+</mapper>

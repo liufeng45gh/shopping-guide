@@ -1,0 +1,65 @@
+server:
+   port: 8084
+   contextPath: /
+   resetCache: true
+spring:
+  redis:
+    host: test.haifuc.cn
+    port: 6379
+    password: lucifer-hfc
+  http:
+    multipart:
+      max-file-size: 50M
+      max-request-size: 100M
+# DATASOURCE
+jdbc:
+    driverClass: com.mysql.jdbc.Driver
+    url: jdbc:mysql://test.haifuc.cn/shopping-guide?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+    username: root
+    password: lucifer-HFC-20170501
+
+#jdbc:
+#    driverClass: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost/oauth2-user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+#    username: root
+#    password:
+#jdbc-hfc:
+#    driverClass: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost/hfc?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+#    username: root
+#    password:
+
+
+# MyBatis
+
+mybatis:
+    typeAliasesPackage: com.lucifer
+    mapperLocations: classpath:/sqlmaps/*.xml
+    configLocation: classpath:/mybatis-config.xml
+
+qiniu:
+  accessKey: eeYtcWvGPXqjEiTIxDljeVu8qxFpwdXOvGo4PURq
+  secretKey: LHkSG-HRLccuUYSgb-TX0ZcDrsyUMEzSg6Z3GG6G
+  publicBucket: vote-2
+  url: http://osienakpr.bkt.clouddn.com/
+multipart:
+  maxFileSize: 10Mb
+  maxRequestSize: 30Mb
+solr:
+  url:
+    news: http://test.haifuc.cn:8983/solr/news
+    artist: http://test.haifuc.cn:8983/solr/artist
+    appreciate: http://test.haifuc.cn:8983/solr/appreciate
+sms:
+  sendCodeUrl: https://api.netease.im/sms/sendcode.action
+  appKey: 80f0cbe03428deb5f520005694aeffdd
+  appSecret: ef2c21102cb8
+  verifyCodeUrl: https://api.netease.im/sms/verifycode.action
+wx:
+  appId: wx7933d55ea3872f4d
+  secret: 7904638ab6802dc7024fb6a44477d441
+
+
+
+
+
