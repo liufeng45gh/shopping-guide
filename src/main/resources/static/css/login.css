@@ -1,0 +1,163 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    font-size: 100px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, html, input, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Tahoma,sans-serif;
+}
+
+
+.page, header {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+header {
+    height: .45rem;
+    line-height: .45rem;
+    background: #f9f9f9;
+    color: #616161;
+    font-size: .17rem;
+    border-bottom: 1px solid #bbb;
+    z-index: 999;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    height: .48rem;
+    line-height: .48rem;
+    overflow: hidden;
+    padding: 0 .05rem;
+    background-color: #fff;
+    border-bottom: 1px solid #d7d7d7;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.input-container>div {
+    position: absolute;
+    width: .6rem;
+    display: inline-block;
+    font-family: PingFang-SC-Regular;
+    text-align: left;
+}
+
+input {
+    border-radius: 0;
+    border: 0;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: PingFang-SC-Regular;
+}
+
+.username {
+    width: 100%;
+    padding: 0 .3rem 0 .6rem;
+}
+
+.password {
+    width: 100%;
+    padding: 0 .7rem 0 .6rem;
+}
+
+.label-checkbox {
+    position: absolute;
+    right: .05rem;
+    top: .15rem;
+    height: .18rem;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.label-checkbox .checkbtn {
+    display: block;
+    width: .3rem;
+    height: .18rem;
+    background-image: url(/img/hide_password.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-clip: padding-box;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.btn {
+    height: .45rem;
+    line-height: .46rem;
+    background-color: #eee;
+    border-radius: 2px;
+    border: 0;
+}
+
+body {
+    font-size: .14rem;
+    text-align: center;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+.wrap {
+    max-width: 7.5rem;
+    margin: 0 auto;
+    padding: 0 .2rem .2rem .2rem;
+}
+
+.btn, input {
+    font-size: .14rem;
+    outline: 0;
+}
+
+.imgverify {
+    width: 100%;
+    padding: 0 .8rem 0 .6rem;
+}
+
+.code-box {
+    width: .75rem;
+    height: .23rem;
+    right: .05rem;
+    top: .125rem;
+    border-left: 1px solid #d7d7d7;
+}
+
+.code-box, .sms-code-box, .pop-body, .pop-dialog, .toast-mask {
+    position: absolute;
+}
+
+.code-box img {
+    width: .75rem;
+    height: .3rem;
+    margin-top: -.28rem;
+    border: 1px solid transparent;
+}
+
+.login-btn{
+    width: 100%;
+}
+
+
+.btn, .btn:active, .btn:hover, .btn:visited {
+    color: #848689;
+}

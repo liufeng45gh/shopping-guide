@@ -54,9 +54,7 @@ public class Item implements Serializable {
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
-
-
-
+    
     public String getLogo() {
         return logo;
     }
@@ -64,9 +62,7 @@ public class Item implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
-
-
+    
     public Date getPublishAt() {
         return publishAt;
     }

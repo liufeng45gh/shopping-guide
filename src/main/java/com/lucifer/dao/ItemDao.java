@@ -50,12 +50,12 @@ public class ItemDao extends IBatisBaseDao {
         return this.sqlSession.selectOne("cmsItemTopMatchRecordCount",param);
     }
 
-    public Integer insertItem(Item appreciate){
-        appreciate.setCreatedAt(DateUtils.now());
-        appreciate.setUpdatedAt(DateUtils.now());
+    public Integer insertItem(Item item){
+        item.setCreatedAt(DateUtils.now());
+        item.setUpdatedAt(DateUtils.now());
         //news.setTop(0f);
-        appreciate.setClickCount(0);
-        Integer updateCount =  this.sqlSession.insert("insertItem",appreciate);
+        //appreciate.setClickCount(0);
+        Integer updateCount =  this.sqlSession.insert("insertItem",item);
         //appreciateService.updateAllAppreciateCount();
         return updateCount;
     }
