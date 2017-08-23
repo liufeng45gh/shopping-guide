@@ -1,0 +1,70 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    font-size: 100px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    color: #333;
+    background-color: #fff;
+}
+
+button, html, input, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Tahoma,sans-serif;
+}
+
+header {
+    height: .45rem;
+    line-height: .45rem;
+    background: #f9f9f9;
+    color: #616161;
+    font-size: .17rem;
+    border-bottom: 1px solid #bbb;
+    z-index: 999;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.welcome{
+        text-align: center;
+        height: 500px;
+        line-height: 500px;
+}
+
+.icon {
+
+    overflow: hidden;
+
+    background-image: url(/img/jd-sprites.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.icon-menu {
+    //right: 15px;
+    width: 20px;
+    height: 20px;
+    background-position: -60px 0;
+    position: relative;
+    top: 12px;
+    margin-left: 15px;
+    text-indent: -100px;
+    background-size: 200px 200px;
+    display: block;
+}
+.icon-cut{
+    top: 0px;
+    position: absolute;
+    right: 0px;
+    width: .65rem;
+    height: .45rem;
+    overflow: hidden;
+}
