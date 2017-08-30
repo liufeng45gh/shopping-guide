@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <title></title>
+    <link rel="stylesheet" href="/css/login.css?v=20170526">
+
+</head>
+<body >
+<!--禁止chrome自动填充-->
+
+<header id="header" style="display:block;">
+    <span class="icon icon-goback"></span>
+    <span class="txt-header">修改密码</span>
+</header>
+<section class="page">
+
+    <div class="wrap loginPage">
+        <div id="username_login" class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="txt-username">原密码</div>
+                <input id="username" class="acc-input username txt-input " type="password" value="" placeholder="请输入原密码" >
+                <i class="icon icon-clear"></i>
+            </div>
+            <div class="input-container">
+                <div class="txt-password">新密码</div>
+                <input id="password" type="password" class="acc-input password txt-input J_ping" placeholder="请输入新密码"  >
+                <i class="icon icon-clear"></i>
+                <label class="label-checkbox J_ping" >
+                    <div class="checkbtn">
+                    </div>
+                </label>
+            </div>
+            <div id="input-code" class="input-container" >
+                <div class="txt-imgverify">重复新密码</div>
+                <input  type="password" class="acc-input password txt-input J_ping" placeholder="请再次输入新密码"  >
+                <i class="icon icon-clear"></i>
+                <!--
+                <span class="light_gray" style="margin-left:45px;">看不清？<a class="link" href="javascript:changeCaptcha();">换一张</a></span>
+                -->
+               
+            </div>
+        </div>
+
+
+
+        <div class="notice">&nbsp;</div>
+        <div  id="loginBtn" class="btn J_ping" report-eventid="MLoginRegister_Login">提 交</div>
+
+
+
+
+    </div>
+</section>
+
+
+
+
+
+
+
+</body>
+</html>
